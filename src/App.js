@@ -8,19 +8,20 @@ const Modal = (props) => {
     const duration = 300;
 
     const defaultStyle = {
-        transition: `opacity ${duration}ms ease-in-out`,
+        transition: `all ${duration}ms ease-in-out`,
         opacity: 0,
+        visibility: 'hidden'
     }
 
     const transitionStyles = {
-        entering: {opacity: 1},
-        entered: {opacity: 1},
-        exiting: {opacity: 0},
-        exited: {opacity: 0},
+        entering: {opacity: 1, visibility: 'visible'},
+        entered: {opacity: 1, visibility: 'visible'},
+        exiting: {opacity: 0, visibility: 'hidden'},
+        exited: {opacity: 0, visibility: 'hidden'},
     };
 
     return (
-        <Transition in={props.show} timeout={duration}>
+        <Transition in={props.show} timeout={duration} unmountOnExit>
             {state => (
                 <div className="modal mt-5 d-block" style={{
                     ...defaultStyle,
